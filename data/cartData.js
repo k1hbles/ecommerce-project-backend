@@ -39,5 +39,4 @@ async function removeFromCart(userId, cartId) {
 module.exports = {
     getCartByUser,
     addToCart,
-    removeFromCart
-}
+};
