@@ -12,7 +12,7 @@ async function getAllListings(filter = {}) {
         FROM listings`;
     const params = [];
 
-    if (filters.category) {
+    if (filter.category) {
         sql += " JOIN categories ON categories.listingId = listings.listingId";
     }
 

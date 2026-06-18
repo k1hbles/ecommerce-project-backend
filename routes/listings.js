@@ -15,11 +15,22 @@ router.get('/', async function (req, res) {
         res.json({ listings });
     } catch (e) {
         console.error(e);
-        res.status(500).json({ error: e.messgae });
+        res.status(500).json({ error: e.message });
     }
 })
 
 // GET /api/listings/:id
+router.get("/:id", async function(req, res) {
+    try {
+        const listing = await listingServices.getListingById(req.params.id);
+        res.json({ listing });
+    } catch (e) {
+        console.error(e);
+        res.status(404).json({ error: e.message });
+    }
+});
+
+// POST add a review
 router.post("/:id/reviews", AuthenticateWithJWT, async function (req, res) {
     try {
         const reviewId = await listingServices.addReview(

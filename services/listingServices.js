@@ -19,7 +19,7 @@ async function addReview(listingId, userId, orderId) {
     return await listingData.createReview(listingId, userId, orderId || null);
 }
 
-exports = {
+module.exports = {
     getAllListings,
     getListingById,
     addReview
