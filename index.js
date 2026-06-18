@@ -9,6 +9,14 @@ const pool = require('./database');
 app.use(express.json());
 app.use(cors());
 
+// Routers
+const listingRouter = require("./routes/listings");
+const userRouter = require("./routes/users");
+
+// Register routers
+app.use("/api/listings", [express.json()], listingRouter);
+app.use("/api/users", [express.json()], userRouter);
+
 // Routes
 app.get('/', (req, res) => {
     res.json ({ message: "Welcome to the API"});
