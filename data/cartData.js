@@ -6,7 +6,7 @@ async function getCartByUser(userId) {
             cartLists.cartId,
             cartLists.listingId,
             cartLists.checkIn,
-            cartLists,checkOut,
+            cartLists.checkOut,
             cartLists.guests,
             listings.title,
             listings.imageUrl,
@@ -39,4 +39,5 @@ async function removeFromCart(userId, cartId) {
 module.exports = {
     getCartByUser,
     addToCart,
+    removeFromCart
 };
