@@ -1,4 +1,4 @@
-const pool = require("../daabase");
+const pool = require("../database");
 
 // user's order
 
@@ -18,7 +18,7 @@ async function getOrdersByUserId(userId) {
     JOIN payments ON payments.orderId = orders.orderId
     WHERE orders.userId = ?
     ORDER BY orders.orderId DESC
-    `
+    `,
     [userId]
     );
     return rows;
@@ -26,6 +26,7 @@ async function getOrdersByUserId(userId) {
 
  // we make the orders, payments and clear the cart in a transaction
  async function createOrdersWithPayments(userId, orders) {
+    const connection = await pool.getConnection();
     try {
         await connection.beginTransaction();
 
@@ -34,7 +35,7 @@ async function getOrdersByUserId(userId) {
         for (const order of orders) {
         const [orderResult] = await connection.execute(
             "INSERT INTO orders (userId, cartId, listingId, totalPrice, checkIn, checkOut) VALUES (?, ?, ?, ?, ?, ?)",
-            [userId, orderIds.cartId, orderIds.listingId, orderIds.totalPrice, order.checkIn, order.checkOut]
+            [userId, order.cartId, order.listingId, order.totalPrice, order.checkIn, order.checkOut]
         );
         const orderId = orderResult.insertId;
         orderIds.push(orderId);

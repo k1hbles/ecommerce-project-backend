@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const orderServoces = require("../services/orderServices");
+const orderServices = require("../services/orderServices");
 const AuthenticateWithJWT = require("../middlewares/AuthenticationWithJWT");
 
 // GET the logged user's orders with payment
