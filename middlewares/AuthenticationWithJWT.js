@@ -3,11 +3,10 @@ const jwt = require("jsonwebtoken");
 function AuthenticateWithJWT(req, res, next) {
     const authHeader = req.headers.authorization;
 
-
     if (!authHeader || !authHeader.startsWith("Bearer")) {
-    return res.status(401).json({
-        error: "Authorization header not found or Bearer not found"
-    });
+        return res.status(401).json({
+            error: "Authorization header not found or Beaerer not found"
+        });
     }
 
     const token = authHeader.split(" ")[1];

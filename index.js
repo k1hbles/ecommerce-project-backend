@@ -13,7 +13,7 @@ app.use(cors());
 const listingRouter = require("./routes/listings");
 const userRouter = require("./routes/users");
 const cartRouter = require("./routes/cart");
-const orderRouter = require("../routes/orders");
+const orderRouter = require("./routes/orders")
 
 // Register routers
 app.use("/api/listings", [express.json()], listingRouter);
