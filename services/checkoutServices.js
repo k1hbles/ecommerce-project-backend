@@ -11,16 +11,16 @@ async function checkout(userId) {
     }
 
     // 2. turn each cart row into an order
-    const order = cartItems.map((item) => ({
+    const orders = cartItems.map((item) => ({
         cartId: item.cartId,
         listingId: item.listingId,
         totalPrice: item.nights * item.price_per_night,
         checkIn: item.checkIn,
-        checkOut: item.checkout
+        checkOut: item.checkOut
     }));
 
     // create orders + payments
-    const orderId = await orderData.createOrdersWithPayments(userId, orders);
+    const orderIds = await orderData.createOrdersWithPayments(userId, orders);
 
     // create stripe checkout session
     const session = await stripeServices.createCheckoutSession(userId, cartItems);

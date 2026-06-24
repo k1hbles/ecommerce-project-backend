@@ -2,13 +2,13 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 function createLineItems(cartItems) {
     const lineItems = [];
-    for (let item of orderItems) {
+    for (let item of cartItems) {
         const lineItem = {
             price_data: {
                 currency: 'sgd',
                 unit_amount: Math.round(item.nights * item.price_per_night * 100),
                 product_data: {
-                    name: item.name,
+                    name: item.title,
                     images: [item.imageUrl || 'https://via.placeholder.com/150'],
                     metadata: {
                         listingId: item.listingId

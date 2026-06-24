@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const checkoutServices = require("../services.checkout");
+const checkoutServices = require("../services/checkoutServices");
 const AuthenticateWithJWT = require("../middlewares/AuthenticationWithJWT");
 
 // POST checkout
