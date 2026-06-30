@@ -17,9 +17,9 @@ USE airbnb;
 -- ---------- core tables (no dependencies) ----------
 
 CREATE TABLE users (
-    userId      INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    fullName    VARCHAR(255) NOT NULL,
-    email       VARCHAR(255) NOT NULL,
+    userId INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    fullName VARCHAR(255),
+    email VARCHAR(255),
     salutation  VARCHAR(100),
     country     VARCHAR(150),
     PRIMARY KEY (userId),

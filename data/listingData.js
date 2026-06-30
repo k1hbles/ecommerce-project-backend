@@ -20,15 +20,15 @@ async function getAllListings(filter = {}) {
 
     if (filter.category) {
         sql += " AND categories.category = ?";
-        params.push(filters.category);
+        params.push(filter.category);
     }
     if (filter.search) {
         sql += " AND listings.title LIKE ?";
-        params.push(`%${filters.search}%`);
+        params.push(`%${filter.search}%`);
     }
     if (filter.maxPrice) {
         sql += " AND listings.price_per_night <= ?";
-        params.push(filters.maxPrice);
+        params.push(filter.maxPrice);
     }
 
     sql += " ORDER BY listings.listingId";

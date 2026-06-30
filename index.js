@@ -6,7 +6,6 @@ const app = express();
 const pool = require('./database');
 
 // Middleware
-app.use(express.json());
 app.use(cors());
 
 // Routers
