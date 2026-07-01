@@ -36,6 +36,7 @@ router.post("/:id/reviews", AuthenticateWithJWT, async function (req, res) {
         const reviewId = await listingServices.addReview(
             req.params.id,
             req.userId,
+            req.body.rating,
             req.body.orderId
         );
         res.status(201).json({ message: "Review added", reviewId });

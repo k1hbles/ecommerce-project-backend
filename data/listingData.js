@@ -65,22 +65,22 @@ async function getAmenitiesByListingId(listingId) {
 
 async function getReviewsByListingId(listingId) {
     const [rows] = await pool.execute(
-        ` SELECT reviews.reviewId, reviews.orderId, users.fullName
-        FROM reviews
-        JOIN users ON reviews.userId = users.userId
-        WHERE reviews.listingId = ?
-        ORDER BY reviews.reviewId DESC`,
+        `SELECT reviews.reviewId, reviews.rating, reviews.comment, users.fullName
+         FROM reviews
+         JOIN users ON reviews.userId = users.userId
+         WHERE reviews.listingId = ?
+         ORDER BY reviews.reviewId DESC`,
         [listingId]
     );
     return rows;
 }
 
-async function createReview(listingId, userId, orderId) {
-    const [ result] = await pool.execute(
-        "INSERT INTO reviews (listingId, userId, orderId) VALUES (?, ?, ?)",
-        [listingId, userId, orderId]
+async function createReview(listingId, userId, rating, comment) {
+    const [result] = await pool.execute(
+        "INSERT INTO reviews (listingId, userId, rating, comment) VALUES (?, ?, ?, ?)",
+        [listingId, userId, rating, comment]
     );
-    return result.insertId
+    return result.insertId;
 }
 
 module.exports = {

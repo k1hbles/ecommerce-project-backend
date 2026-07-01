@@ -15,8 +15,11 @@ async function getListingById(listingId) {
     return listing;
 }
 
-async function addReview(listingId, userId, orderId) {
-    return await listingData.createReview(listingId, userId, orderId || null);
+async function addReview(listingId, userId, rating, comment) {
+    if (!rating || !comment) {
+        throw new Error("rating and comment are required");
+    }
+    return await listingData.createReview(listingId, userId, rating, comment);
 }
 
 module.exports = {
