@@ -31,7 +31,7 @@ async function createCheckoutSession(userId, orderItems, orderId) {
         payment_method_types:['card'], 
         line_items: lineItems,
         mode: "payment",
-        success_url: `${process.env.FRONTEND_URL}/orders?success=1`,
+        success_url: `${process.env.FRONTEND_URL}/orders`,
         cancel_url: `${process.env.FRONTEND_URL}/cart?canceled=1`,
         metadata: {
             userId: userId,
